@@ -1,0 +1,16 @@
+- hosts: target
+  become: true
+  roles:
+    - name: install docker
+      role: docker
+
+- hosts: target
+  tasks:
+    - name: make wks directory
+      file:
+        path: ~/wks
+        state: directory
+    - name: checkout docker-www repository
+      git:
+        repo: https://github.com/tateishi/docker-www.git
+        dest: ~/wks/docker-www
